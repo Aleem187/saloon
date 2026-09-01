@@ -17,6 +17,8 @@ The original green palette is used throughout. **No pink (`#E576A1`) appears any
 --green-mist: #f7f6f3;   /* hero ground */
 ```
 
+Accent rule under centred headings: `--gold #c9a227`.
+
 Section grounds: `--cream #f7f4ec`, `--beige #f2ede1`, `--sand #faf8f3`,
 `--blue-grey #dde5e8` (footer), `--lavender-soft #ece6f1` (testimonials).
 
