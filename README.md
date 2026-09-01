@@ -31,7 +31,7 @@ Matches the reference top to bottom:
 1. Header — HK monogram, nav, green Book Appointment pill, search
 2. Hero — social proof, H1, copy, two buttons, 3-image collage, rotating seal
 3. Brand strip — Charlotte Tilbury, L'Oréal, NARS, Armani, Guinot, MAC (continuous marquee)
-4. Your Journey to Lasting Beauty — two-column intro + video card
+4. Your Journey to Lasting Beauty — two-column intro + autoplaying film
 5. Four ways we care for you — Makeup / Hair / Spa / HK Aesthetics
 6. Bridal is where we made our name
 7. Why Lahore keeps coming back — four cards
@@ -55,7 +55,7 @@ Replace each file (keep the name, or update the `src` in `index.html`):
 | --------------------------------------------- | --------------------------- | ----- |
 | `hero-1 / hero-2 / hero-3`                    | hero collage (l-to-r)       | 187:413 |
 | `avatar-1 / avatar-2 / avatar-3`              | social-proof avatars        | 1:1   |
-| `video-still`                                 | Bridal Beauty Edit card     | 16:7  |
+| `video-still`                                 | film poster frame           | 16:9  |
 | `card-makeup / card-hair / card-spa / card-aesthetics` | service cards      | 4:3   |
 | `bridal`                                      | Bridal section              | 4:5   |
 | `guide`                                       | Expert's Guide              | 1:1   |
@@ -88,6 +88,13 @@ Breakpoints at `1180px` (nav → drawer), `980px` (split sections stack, 2-up ca
 `720px` (single column), `560px` (compact masthead), `420px`.
 `prefers-reduced-motion` disables reveals, the seal rotation, the brand marquee, autoplay and
 transitions.
+
+### The journey film
+
+`index.html` uses a real `<video>` (autoplay, muted, loop, playsinline) pointing at
+`assets/video/bridal-beauty-edit-2025.mp4`. While that file is absent the poster frame shows and
+the play/pause control hides itself rather than offering a dead button. The gold Bridal Beauty
+Edit lockup belongs to the film's own frames on the reference site, so there is no HTML overlay.
 
 ### Brand marquee
 

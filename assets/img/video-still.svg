@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 620" width="1400" height="620" role="img" aria-label="video-still">
-  <rect width="1400" height="620" fill="#e8e4da"/>
-  <rect x="1" y="1" width="1398" height="618" fill="none" stroke="#cfc9bb" stroke-width="1.5" stroke-dasharray="7 5"/>
-  <g fill="none" stroke="#b3ac9c" stroke-width="1.6">
-    <rect x="679" y="280" width="42" height="32" rx="3"/>
-    <circle cx="691" cy="290" r="4"/>
-    <path d="M680 304 l13 -12 l10 9 l7 -6 l11 9"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" role="img" aria-label="video-still">
+  <rect width="1600" height="900" fill="#e8e4da"/>
+  <rect x="2" y="2" width="1596" height="896" fill="none" stroke="#cfc9bb" stroke-width="2" stroke-dasharray="10 7"/>
+  <g fill="none" stroke="#b3ac9c" stroke-width="2.4">
+    <rect x="757" y="404" width="86" height="66" rx="5"/>
+    <circle cx="782" cy="425" r="8"/>
+    <path d="M759 462l27-25 20 18 15-12 22 19"/>
   </g>
-  <text x="50%" y="326" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
-        font-size="12" fill="#8d8778" letter-spacing="1.5">video-still</text>
+  <text x="50%" y="512" text-anchor="middle" font-family="Helvetica, Arial, sans-serif"
+        font-size="20" fill="#8d8778" letter-spacing="3">video-still</text>
 </svg>

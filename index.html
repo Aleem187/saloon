@@ -127,27 +127,37 @@
   </div>
 
   <!-- 04 ==================================================== journey -->
-  <section class="section">
+  <section class="section journey">
     <div class="container">
       <div class="journey__head">
         <h2 class="reveal">Your Journey to Lasting Beauty Starts Here!</h2>
         <p class="reveal" data-delay="1">
           Your beauty journey begins the moment you walk through our doors. We are committed to
-          offering you tailored care that starts long before your appointment and stays with you
-          well after it ends.
+          offering you tailored care in an inviting space where every service is designed with
+          you in mind.
         </p>
       </div>
 
-      <div class="video-card reveal" data-delay="2">
-        <img src="assets/img/video-still.svg" alt="Bridal Beauty Edit 2025 film">
-        <div class="video-card__lockup">
-          <b>Hifsa Khan</b>
-          <span>Bridal Beauty Edit 2025</span>
-        </div>
-        <button class="video-card__play" type="button" aria-label="Play the Bridal Beauty Edit film">
-          <svg width="14" height="15" viewBox="0 0 14 15" fill="currentColor"><path d="M0 0l14 7.5L0 15z"/></svg>
+      <figure class="video-card reveal" data-delay="2">
+        <!-- Drop the film in as assets/video/bridal-beauty-edit-2025.mp4.
+             Until it exists the poster frame shows in its place. -->
+        <video
+          id="journeyVideo"
+          poster="assets/img/video-still.svg"
+          autoplay muted loop playsinline preload="metadata"
+          aria-label="Bridal Beauty Edit 2025">
+          <source src="assets/video/bridal-beauty-edit-2025.mp4" type="video/mp4">
+        </video>
+        <button class="video-card__toggle" id="videoToggle" type="button"
+                aria-label="Pause the film" aria-pressed="false">
+          <svg class="icon-pause" width="13" height="15" viewBox="0 0 12 14" fill="currentColor">
+            <rect x="0" y="0" width="4" height="14" rx="1"/><rect x="8" y="0" width="4" height="14" rx="1"/>
+          </svg>
+          <svg class="icon-play" width="13" height="15" viewBox="0 0 14 15" fill="currentColor" hidden>
+            <path d="M0 0l14 7.5L0 15z"/>
+          </svg>
         </button>
-      </div>
+      </figure>
     </div>
   </section>
 

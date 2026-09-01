@@ -148,5 +148,53 @@
   wireForm('guideForm', 'gEmail', 'guideMsg', 'Thank you — your guide is on its way.');
   wireForm('nlForm', 'nlEmail', 'nlMsg', 'Thank you — you are on the list.');
 
+  /* ------------------------------------------------------- journey film */
+  var video = document.getElementById('journeyVideo');
+  var toggle = document.getElementById('videoToggle');
+
+  if (video && toggle) {
+    var iconPause = toggle.querySelector('.icon-pause');
+    var iconPlay = toggle.querySelector('.icon-play');
+
+    function syncToggle() {
+      var paused = video.paused;
+      iconPause.hidden = paused;
+      iconPlay.hidden = !paused;
+      toggle.setAttribute('aria-pressed', String(paused));
+      toggle.setAttribute('aria-label', paused ? 'Play the film' : 'Pause the film');
+    }
+
+    toggle.addEventListener('click', function () {
+      if (video.paused) {
+        var p = video.play();
+        // Autoplay can be refused; don't leave the icon lying about the state.
+        if (p && p.catch) p.catch(syncToggle);
+      } else {
+        video.pause();
+      }
+    });
+
+    video.addEventListener('play', syncToggle);
+    video.addEventListener('pause', syncToggle);
+
+    // No source yet, or the file is missing: the poster stands in, so the
+    // control would do nothing — hide it rather than offer a dead button.
+    // The failure surfaces on the <source> child, and only once the element
+    // has finished trying, so check on the error events and again after load.
+    function hideIfUnplayable() {
+      if (!video.currentSrc || video.networkState === video.NETWORK_NO_SOURCE) {
+        toggle.hidden = true;
+      }
+    }
+    video.addEventListener('error', hideIfUnplayable);
+    var source = video.querySelector('source');
+    if (source) source.addEventListener('error', hideIfUnplayable);
+    window.addEventListener('load', hideIfUnplayable);
+    hideIfUnplayable();
+
+    if (reduceMotion) { video.removeAttribute('autoplay'); video.pause(); }
+    syncToggle();
+  }
+
   document.getElementById('year').textContent = new Date().getFullYear();
 })();
