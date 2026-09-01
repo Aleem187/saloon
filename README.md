@@ -9,11 +9,12 @@ The original green palette is used throughout. **No pink (`#E576A1`) appears any
 
 ```css
 /* assets/css/styles.css */
---green:      #7d9b6d;   /* primary accent: buttons, links, icons */
---green-dark: #638054;   /* hover */
---green-deep: #47603b;   /* text on pale grounds */
+--green:      #8fae8b;   /* primary accent: buttons, links, icons */
+--green-dark: #7a9c76;   /* hover */
+--green-deep: #5f7f5b;   /* text on pale grounds */
+--green-line: #bcd2b8;   /* outline-button border */
 --green-pale: #e7eede;   /* newsletter ground */
---green-mist: #f1f5eb;   /* hero ground */
+--green-mist: #f7f6f3;   /* hero ground */
 ```
 
 Section grounds: `--cream #f7f4ec`, `--beige #f2ede1`, `--sand #faf8f3`,
@@ -52,7 +53,7 @@ Replace each file (keep the name, or update the `src` in `index.html`):
 
 | File                                          | Slot                        | Ratio |
 | --------------------------------------------- | --------------------------- | ----- |
-| `hero-1 / hero-2 / hero-3`                    | hero collage                | 3:4   |
+| `hero-1 / hero-2 / hero-3`                    | hero collage (l-to-r)       | 187:413 |
 | `avatar-1 / avatar-2 / avatar-3`              | social-proof avatars        | 1:1   |
 | `video-still`                                 | Bridal Beauty Edit card     | 16:7  |
 | `card-makeup / card-hair / card-spa / card-aesthetics` | service cards      | 4:3   |
@@ -68,7 +69,7 @@ an exact match.
 
 ## Typography
 
-Playfair Display (headings) + Jost (body), loaded from Google Fonts. Both are **inferred
+Cormorant Garamond (headings) + Jost (body), loaded from Google Fonts. Both are **inferred
 from the screenshot**, not confirmed against the source — the reference's actual faces may
 differ, and swapping them is a one-line change in `index.html` plus `--font-display` /
 `--font-body`.
