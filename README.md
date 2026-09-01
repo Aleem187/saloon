@@ -41,7 +41,7 @@ Matches the reference top to bottom:
 9. Special Promotions — one static creative plus two independent sliders
 10. Create Memories at Hifsa Khan Sets
 11. FAQ accordion + See All FAQs
-12. Real Transformations Real Stories — testimonial slider
+12. Real Transformations Real Stories — testimonial slider (quote + image move together)
 13. Newsletter
 14. Instagram grid
 15. Footer — brand strip, Address / Contact / Info / More / Business Hours
@@ -64,7 +64,7 @@ Replace each file (keep the name, or update the `src` in `index.html`):
 | `promo-makeup`                                | Special Promotions, static  | 1:1   |
 | `promo-hair-1..3`, `promo-spa-1..3`           | Special Promotions, sliders | 1:1   |
 | `sets`                                        | Hifsa Khan Sets             | 4:3   |
-| `testimonial`                                 | testimonial panel           | 3:4   |
+| `tst-1`, `tst-2`                              | testimonial, one per quote  | 3:4   |
 | `insta-1` … `insta-6`                         | Instagram grid              | 1:1   |
 
 The six brand logos render as text set in the display face; swap in the real logo files for
@@ -91,6 +91,16 @@ Breakpoints at `1180px` (nav → drawer), `980px` (split sections stack, 2-up ca
 `720px` (single column), `560px` (compact masthead), `420px`.
 `prefers-reduced-motion` disables reveals, the seal rotation, the brand marquee, autoplay and
 transitions.
+
+### Testimonials
+
+Each testimonial owns its picture. The arrows move the quote and the image as one: the quotes
+slide horizontally while the images crossfade underneath, both driven by a single index. To add
+a testimonial, add a `.tst__slide` and a matching `.tst__img` whose `data-tst` is the next index.
+
+Only quotes actually seen on the reference site are used, and no quote carries an attribution
+that was not shown with it — the second is credited to "Client" because its author is unknown.
+Do not add invented names.
 
 ### Promotion sliders
 

@@ -95,13 +95,19 @@
   /* ---------------------------------------------------- testimonial slider */
   var track = document.getElementById('tstTrack');
   var slides = track ? track.children : [];
+  var tstImages = document.querySelectorAll('.tst__img');
   var index = 0;
   var timer = null;
 
   function goTo(i) {
     index = (i + slides.length) % slides.length;
     track.style.transform = 'translateX(' + (-index * 100) + '%)';
+    // The picture belongs to the slide, so it moves with the quote.
+    tstImages.forEach(function (img) {
+      img.classList.toggle('is-active', Number(img.dataset.tst) === index);
+    });
   }
+
   function autoplay() {
     if (reduceMotion || slides.length < 2) return;
     clearInterval(timer);
@@ -124,28 +130,6 @@
     goTo(0);
     autoplay();
   }
-
-  /* ------------------------------------------------------------- forms */
-  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  function wireForm(formId, emailId, msgId, success) {
-    var form = document.getElementById(formId);
-    if (!form) return;
-    var msg = document.getElementById(msgId);
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var input = document.getElementById(emailId);
-      if (!EMAIL.test(input.value.trim())) {
-        msg.textContent = 'Please enter a valid email address.';
-        input.focus();
-        return;
-      }
-      msg.textContent = success;
-      form.reset();
-    });
-  }
-
-  wireForm('nlForm', 'nlEmail', 'nlMsg', 'Thank you — you are on the list.');
 
   /* ------------------------------------------------- promotion sliders */
   // Each promotion runs its own slider, with its own position — advancing one

@@ -447,33 +447,39 @@
 
   <!-- 12 =============================================== testimonials -->
   <section class="tst" id="testimonials">
+    <!-- The picture is part of the slide: the arrows move the quote and the
+         image together, so both are indexed and crossfade as one. -->
     <div class="tst__media">
-      <img src="assets/img/testimonial.svg" alt="Clients at Hifsa Khan Salon">
+      <img class="tst__img is-active" src="assets/img/tst-1.svg" alt="Client at Hifsa Khan Salon" data-tst="0">
+      <img class="tst__img" src="assets/img/tst-2.svg" alt="Client at Hifsa Khan Salon" data-tst="1" loading="lazy">
     </div>
+
     <div class="tst__panel">
       <span class="tst__mark" aria-hidden="true">&ldquo;</span>
       <h2>Real Transformations<br>Real Stories</h2>
+
       <div class="tst__viewport">
         <div class="tst__track" id="tstTrack">
           <blockquote class="tst__slide">
-            <p class="tst__name">&mdash; Ayeza Khan</p>
-            <p class="tst__quote">&ldquo;I&rsquo;ve never seen anything like it. Walking into the
-              salon and being greeted by a cocktail bar asking my favourite drink. What more could
-              I ask for.&rdquo;</p>
+            <p class="tst__name">&mdash; Dananir</p>
+            <p class="tst__quote">&ldquo;The moment I walked in, I felt special. The attention to
+              detail and care they put into every step is unmatched. I&rsquo;ve found my go-to
+              salon!&rdquo;</p>
           </blockquote>
           <blockquote class="tst__slide">
-            <p class="tst__name">&mdash; A Client</p>
-            <p class="tst__quote">&ldquo;The moment I walked in, I felt special. The attention to
-              detail and care they put into every step is unmatched.&rdquo;</p>
+            <p class="tst__name">&mdash; Client</p>
+            <p class="tst__quote">&ldquo;Walking into the salon and being greeted by a cocktail bar
+              asking my favourite drink. What more could I ask for.&rdquo;</p>
           </blockquote>
         </div>
       </div>
+
       <div class="tst__nav">
         <button class="tst__btn" id="tstPrev" type="button" aria-label="Previous testimonial">
-          <svg width="14" height="9" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M16 5H2M6 1 2 5l4 4"/></svg>
+          <svg width="9" height="15" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 1L1.5 8l7 7"/></svg>
         </button>
         <button class="tst__btn" id="tstNext" type="button" aria-label="Next testimonial">
-          <svg width="14" height="9" viewBox="0 0 16 10" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M0 5h14M10 1l4 4-4 4"/></svg>
+          <svg width="9" height="15" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1l7 7-7 7"/></svg>
         </button>
       </div>
     </div>
