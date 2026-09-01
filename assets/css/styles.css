@@ -288,18 +288,40 @@ body.is-locked { overflow: hidden; }
 
 /* --------------------------------------------------------------- brands -- */
 .brands { background: var(--white); border-block: 1px solid var(--line-soft); }
+
+/* shared logo typography for both the static strip and the moving one */
+.brands img, .brands span {
+  flex: 0 0 auto;
+  font-family: var(--font-display); font-size: clamp(.8rem, 1.5vw, 1.15rem);
+  letter-spacing: .16em; text-transform: uppercase; color: #8d8b84;
+  white-space: nowrap;
+  filter: grayscale(1); opacity: .75;
+  transition: opacity .3s var(--ease), filter .3s var(--ease);
+}
+.brands img:hover, .brands span:hover { opacity: 1; filter: grayscale(0); }
+
+/* static strip (footer) */
 .brands__row {
   display: flex; align-items: center; justify-content: space-between;
   gap: clamp(16px, 3vw, 48px); padding-block: 26px; flex-wrap: wrap;
 }
-.brands__row img, .brands__row span {
-  flex: 0 1 auto;
-  font-family: var(--font-display); font-size: clamp(.8rem, 1.5vw, 1.15rem);
-  letter-spacing: .16em; text-transform: uppercase; color: #8d8b84;
-  filter: grayscale(1); opacity: .75;
-  transition: opacity .3s var(--ease), filter .3s var(--ease);
+
+/* continuously moving strip (below the hero) */
+.brands--marquee { padding-block: 26px; }
+.brands__viewport { overflow: hidden; }
+.brands__track {
+  display: flex; width: max-content;
+  animation: brandScroll 32s linear infinite;
 }
-.brands__row img:hover, .brands__row span:hover { opacity: 1; filter: grayscale(0); }
+.brands__group {
+  display: flex; align-items: center;
+  gap: clamp(38px, 5vw, 76px);
+  padding-right: clamp(38px, 5vw, 76px);
+}
+@keyframes brandScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 
 /* -------------------------------------------------------------- journey -- */
 .journey__head {
@@ -601,4 +623,5 @@ body.is-locked { overflow: hidden; }
     transition-duration: .001ms !important; scroll-behavior: auto !important;
   }
   .reveal { opacity: 1; transform: none; }
+  .brands__track { animation: none; }
 }

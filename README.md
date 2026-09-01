@@ -30,7 +30,7 @@ Matches the reference top to bottom:
 
 1. Header — HK monogram, nav, green Book Appointment pill, search
 2. Hero — social proof, H1, copy, two buttons, 3-image collage, rotating seal
-3. Brand strip — Charlotte Tilbury, L'Oréal, NARS, Armani, Guinot, MAC
+3. Brand strip — Charlotte Tilbury, L'Oréal, NARS, Armani, Guinot, MAC (continuous marquee)
 4. Your Journey to Lasting Beauty — two-column intro + video card
 5. Four ways we care for you — Makeup / Hair / Spa / HK Aesthetics
 6. Bridal is where we made our name
@@ -86,4 +86,12 @@ Or open `index.html` directly; the page is fully static.
 
 Breakpoints at `1180px` (nav → drawer), `980px` (split sections stack, 2-up cards),
 `720px` (single column), `560px` (compact masthead), `420px`.
-`prefers-reduced-motion` disables reveals, the seal rotation, autoplay and transitions.
+`prefers-reduced-motion` disables reveals, the seal rotation, the brand marquee, autoplay and
+transitions.
+
+### Brand marquee
+
+The strip below the hero scrolls continuously and never pauses. The logo group is duplicated in
+the markup and the track animates to `translateX(-50%)`, so the loop lands exactly one group
+over and repeats with no visible jump. Speed is the `32s` duration on `.brands__track`. The
+second strip above the footer is deliberately left static.

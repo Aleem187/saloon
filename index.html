@@ -116,14 +116,13 @@
   </section>
 
   <!-- 03 ===================================================== brands -->
-  <div class="brands">
-    <div class="container brands__row">
-      <span>Charlotte Tilbury</span>
-      <span>L&rsquo;Or&eacute;al</span>
-      <span>NARS</span>
-      <span>Armani</span>
-      <span>Guinot</span>
-      <span>MAC</span>
+  <div class="brands brands--marquee">
+    <div class="brands__viewport">
+      <!-- the group is duplicated so the -50% loop is seamless -->
+      <div class="brands__track">
+        <div class="brands__group"><span>Charlotte Tilbury</span><span>L&rsquo;Or&eacute;al</span><span>NARS</span><span>Armani</span><span>Guinot</span><span>MAC</span></div>
+        <div class="brands__group" aria-hidden="true"><span>Charlotte Tilbury</span><span>L&rsquo;Or&eacute;al</span><span>NARS</span><span>Armani</span><span>Guinot</span><span>MAC</span></div>
+      </div>
     </div>
   </div>
 
