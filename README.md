@@ -37,7 +37,7 @@ Matches the reference top to bottom:
 5. Four ways we care for you — Makeup / Hair / Spa / HK Aesthetics
 6. Bridal is where we made our name
 7. Why Lahore keeps coming back — four cards
-8. The Expert's Guide to Effortless Radiance — image + form
+8. The Expert's Guide to Effortless Radiance — topic list with hover-swapped image
 9. Special Promotions — three creatives
 10. Create Memories at Hifsa Khan Sets
 11. FAQ accordion + See All FAQs
@@ -60,7 +60,7 @@ Replace each file (keep the name, or update the `src` in `index.html`):
 | `video-still`                                 | film poster frame           | 16:9  |
 | `card-makeup / card-hair / card-spa / card-aesthetics` | service cards      | 4:3   |
 | `bridal`                                      | Bridal section              | 4:5   |
-| `guide`                                       | Expert's Guide              | 1:1   |
+| `guide-1` … `guide-5`                         | Expert's Guide, one per topic | 1:1 |
 | `promo-makeup / promo-hair / promo-spa`       | Special Promotions          | 1:1   |
 | `sets`                                        | Hifsa Khan Sets             | 4:3   |
 | `testimonial`                                 | testimonial panel           | 3:4   |
@@ -90,6 +90,13 @@ Breakpoints at `1180px` (nav → drawer), `980px` (split sections stack, 2-up ca
 `720px` (single column), `560px` (compact masthead), `420px`.
 `prefers-reduced-motion` disables reveals, the seal rotation, the brand marquee, autoplay and
 transitions.
+
+### The Expert's Guide image swap
+
+The five topics each own a picture. All five are stacked in `.guide__media` and crossfade via
+an `is-active` class, so nothing loads on hover and there is no flicker. Pointer hover and
+keyboard focus both drive it; leaving the list returns to the first topic. To change which
+picture belongs to a topic, keep the `data-guide` index on the link and image in step.
 
 ### The journey film
 

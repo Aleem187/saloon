@@ -145,8 +145,37 @@
     });
   }
 
-  wireForm('guideForm', 'gEmail', 'guideMsg', 'Thank you — your guide is on its way.');
   wireForm('nlForm', 'nlEmail', 'nlMsg', 'Thank you — you are on the list.');
+
+  /* ------------------------------------------- expert's guide image swap */
+  var guideList = document.getElementById('guideList');
+
+  if (guideList) {
+    var guideImages = document.querySelectorAll('.guide__img');
+
+    function showGuide(i) {
+      guideImages.forEach(function (img) {
+        img.classList.toggle('is-active', Number(img.dataset.guide) === i);
+      });
+    }
+
+    guideList.addEventListener('pointerover', function (e) {
+      var link = e.target.closest('.guide__link');
+      if (link) showGuide(Number(link.dataset.guide));
+    });
+
+    // Keyboard users get the same preview when they tab through the list.
+    guideList.addEventListener('focusin', function (e) {
+      var link = e.target.closest('.guide__link');
+      if (link) showGuide(Number(link.dataset.guide));
+    });
+
+    // Leaving the list altogether returns to the first topic.
+    guideList.addEventListener('pointerleave', function () { showGuide(0); });
+    guideList.addEventListener('focusout', function (e) {
+      if (!guideList.contains(e.relatedTarget)) showGuide(0);
+    });
+  }
 
   /* ------------------------------------------------------- journey film */
   var video = document.getElementById('journeyVideo');

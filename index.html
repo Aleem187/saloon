@@ -286,32 +286,27 @@
 
   <!-- 08 ====================================================== guide -->
   <section class="section guide">
-    <div class="container split">
-      <div class="split__media reveal">
-        <img src="assets/img/guide.svg" alt="Skin and beauty consultation">
+    <div class="container guide__grid">
+      <!-- Every topic has its own picture; hovering or focusing a link
+           crossfades to it, so all five images are stacked and preloaded. -->
+      <div class="guide__media reveal">
+          <img class="guide__img is-active" src="assets/img/guide-1.svg" alt="brides" data-guide="0">
+          <img class="guide__img" src="assets/img/guide-2.svg" alt="spa and skincare" data-guide="1">
+          <img class="guide__img" src="assets/img/guide-3.svg" alt="hair trends and care" data-guide="2">
+          <img class="guide__img" src="assets/img/guide-4.svg" alt="barat, nikkah and walima" data-guide="3">
+          <img class="guide__img" src="assets/img/guide-5.svg" alt="mehndi and cultural events" data-guide="4">
       </div>
-      <div class="reveal" data-delay="1">
+
+      <div class="guide__panel reveal" data-delay="1">
         <h2>The Expert&rsquo;s Guide to Effortless Radiance</h2>
-        <form class="form-underline" id="guideForm" novalidate>
-          <div>
-            <label for="gName">Name</label>
-            <input id="gName" name="name" type="text" autocomplete="name" required>
-          </div>
-          <div>
-            <label for="gEmail">Email Address</label>
-            <input id="gEmail" name="email" type="email" autocomplete="email" required>
-          </div>
-          <div>
-            <label for="gPhone">Phone Number</label>
-            <input id="gPhone" name="phone" type="tel" autocomplete="tel">
-          </div>
-          <div>
-            <label for="gConcern">Beauty Concern &amp; Address</label>
-            <input id="gConcern" name="concern" type="text">
-          </div>
-          <p class="form-msg" id="guideMsg" role="status" aria-live="polite"></p>
-          <button class="btn btn--green" type="submit">Send Me the Guide</button>
-        </form>
+        <ul class="guide__list" id="guideList">
+          <li><a class="guide__link" href="/bridal-beauty.php" data-guide="0">All about Brides</a></li>
+          <li><a class="guide__link" href="/spa/" data-guide="1">Spa &amp; Skincare</a></li>
+          <li><a class="guide__link" href="/hair/" data-guide="2">Hair Trends &amp; Care</a></li>
+          <li><a class="guide__link" href="/makeup/" data-guide="3">Barat, Nikkah &amp; Walima</a></li>
+          <li><a class="guide__link" href="/makeup/mehndi-application/" data-guide="4">Mehndi &amp; Cultural Events</a></li>
+        </ul>
+        <a class="btn btn--outline guide__cta" href="/dos-donts.php">View All Beauty Secrets</a>
       </div>
     </div>
   </section>
