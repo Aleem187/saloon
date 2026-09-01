@@ -147,6 +147,36 @@
 
   wireForm('nlForm', 'nlEmail', 'nlMsg', 'Thank you — you are on the list.');
 
+  /* ------------------------------------------------- promotion sliders */
+  // Each promotion runs its own slider, with its own position — advancing one
+  // must never move the other.
+  document.querySelectorAll('[data-promo-slider]').forEach(function (slider) {
+    var track = slider.querySelector('.promo__track');
+    var slides = track.children.length;
+    if (slides < 2) return;
+
+    var at = 0;
+
+    function go(next) {
+      at = (next + slides) % slides;
+      track.style.transform = 'translateX(' + (-at * 100) + '%)';
+    }
+
+    slider.querySelector('.promo__nav--prev').addEventListener('click', function () { go(at - 1); });
+    slider.querySelector('.promo__nav--next').addEventListener('click', function () { go(at + 1); });
+
+    var startX = null;
+    track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend', function (e) {
+      if (startX === null) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      if (Math.abs(dx) > 45) go(at + (dx < 0 ? 1 : -1));
+      startX = null;
+    }, { passive: true });
+
+    go(0);
+  });
+
   /* ------------------------------------------- expert's guide image swap */
   var guideList = document.getElementById('guideList');
 

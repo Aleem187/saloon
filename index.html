@@ -317,20 +317,48 @@
       <div class="section-head section-head--center reveal">
         <h2>Special Promotions</h2>
       </div>
+
       <div class="promos">
+        <!-- The first promotion is a single creative; the other two each carry
+             their own independent slider. -->
         <figure class="promo reveal">
-          <img src="assets/img/promo-makeup.svg" alt="Bridal Experience promotion">
+          <div class="promo__media">
+            <img src="assets/img/promo-makeup.svg" alt="Bridal Experience promotion">
+          </div>
           <figcaption>Makeup</figcaption>
         </figure>
-        <figure class="promo reveal" data-delay="1">
-          <img src="assets/img/promo-hair.svg" alt="Azaadi hair promotion">
+
+        <figure class="promo promo--slider reveal" data-delay="1" data-promo-slider>
+          <div class="promo__media">
+            <div class="promo__track">
+            <img src="assets/img/promo-hair-1.svg" alt="Hair promotion 1">
+            <img src="assets/img/promo-hair-2.svg" alt="Hair promotion 2" loading="lazy">
+            <img src="assets/img/promo-hair-3.svg" alt="Hair promotion 3" loading="lazy">
+            </div>
+            <button class="promo__nav promo__nav--prev" type="button"
+                    aria-label="Previous Hair promotion"><svg width="9" height="15" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 1L1.5 8l7 7"/></svg></button>
+            <button class="promo__nav promo__nav--next" type="button"
+                    aria-label="Next Hair promotion"><svg width="9" height="15" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1l7 7-7 7"/></svg></button>
+          </div>
           <figcaption>Hair</figcaption>
         </figure>
-        <figure class="promo reveal" data-delay="2">
-          <img src="assets/img/promo-spa.svg" alt="Hydro-Boost Glow Facial promotion">
+
+        <figure class="promo promo--slider reveal" data-delay="2" data-promo-slider>
+          <div class="promo__media">
+            <div class="promo__track">
+            <img src="assets/img/promo-spa-1.svg" alt="Spa promotion 1">
+            <img src="assets/img/promo-spa-2.svg" alt="Spa promotion 2" loading="lazy">
+            <img src="assets/img/promo-spa-3.svg" alt="Spa promotion 3" loading="lazy">
+            </div>
+            <button class="promo__nav promo__nav--prev" type="button"
+                    aria-label="Previous Spa promotion"><svg width="9" height="15" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 1L1.5 8l7 7"/></svg></button>
+            <button class="promo__nav promo__nav--next" type="button"
+                    aria-label="Next Spa promotion"><svg width="9" height="15" viewBox="0 0 10 16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1l7 7-7 7"/></svg></button>
+          </div>
           <figcaption>Spa</figcaption>
         </figure>
       </div>
+
       <p class="promos-note reveal">
         Terms and conditions apply. Limited-time offers available at selected branches.
       </p>

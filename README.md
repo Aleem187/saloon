@@ -38,7 +38,7 @@ Matches the reference top to bottom:
 6. Bridal is where we made our name
 7. Why Lahore keeps coming back — four cards
 8. The Expert's Guide to Effortless Radiance — topic list with hover-swapped image
-9. Special Promotions — three creatives
+9. Special Promotions — one static creative plus two independent sliders
 10. Create Memories at Hifsa Khan Sets
 11. FAQ accordion + See All FAQs
 12. Real Transformations Real Stories — testimonial slider
@@ -61,7 +61,8 @@ Replace each file (keep the name, or update the `src` in `index.html`):
 | `card-makeup / card-hair / card-spa / card-aesthetics` | service cards      | 4:3   |
 | `bridal`                                      | Bridal section              | 4:5   |
 | `guide-1` … `guide-5`                         | Expert's Guide, one per topic | 1:1 |
-| `promo-makeup / promo-hair / promo-spa`       | Special Promotions          | 1:1   |
+| `promo-makeup`                                | Special Promotions, static  | 1:1   |
+| `promo-hair-1..3`, `promo-spa-1..3`           | Special Promotions, sliders | 1:1   |
 | `sets`                                        | Hifsa Khan Sets             | 4:3   |
 | `testimonial`                                 | testimonial panel           | 3:4   |
 | `insta-1` … `insta-6`                         | Instagram grid              | 1:1   |
@@ -90,6 +91,13 @@ Breakpoints at `1180px` (nav → drawer), `980px` (split sections stack, 2-up ca
 `720px` (single column), `560px` (compact masthead), `420px`.
 `prefers-reduced-motion` disables reveals, the seal rotation, the brand marquee, autoplay and
 transitions.
+
+### Promotion sliders
+
+The Makeup promotion is a single creative. Hair and Spa each run their own slider with its own
+position, so advancing one never moves the other; both wrap around in both directions and accept
+swipes. To change how many slides a promotion has, add or remove `<img>` elements inside its
+`.promo__track` — the script counts them. They are manual only, with no autoplay.
 
 ### The Expert's Guide image swap
 
