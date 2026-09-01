@@ -6,21 +6,18 @@
 
   /* ------------------------------------------------------ sticky header */
   var header = document.getElementById('header');
-  function onScroll() {
-    header.classList.toggle('is-stuck', window.scrollY > 12);
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', function () {
+    header.classList.toggle('is-stuck', window.scrollY > 10);
+  }, { passive: true });
 
   /* -------------------------------------------------------- mobile menu */
   var burger = document.getElementById('burger');
   var drawer = document.getElementById('drawer');
 
-  // The drawer is fixed, so it must clear whatever the masthead occupies at the
-  // top of the viewport right now — that shrinks once the topbar has scrolled away.
+  // The drawer is fixed, so it must clear whatever the header occupies right now.
   function measureHeader() {
-    var bottom = header.getBoundingClientRect().bottom;
-    document.documentElement.style.setProperty('--header-h', Math.max(0, Math.round(bottom)) + 'px');
+    document.documentElement.style.setProperty(
+      '--header-h', Math.max(0, Math.round(header.getBoundingClientRect().bottom)) + 'px');
   }
 
   function setMenu(open) {
@@ -34,22 +31,18 @@
   burger.addEventListener('click', function () {
     setMenu(burger.getAttribute('aria-expanded') !== 'true');
   });
-
   drawer.addEventListener('click', function (e) {
     if (e.target.closest('a')) setMenu(false);
   });
-
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && drawer.classList.contains('is-open')) setMenu(false);
   });
-
   window.addEventListener('resize', function () {
-    if (window.innerWidth > 980 && drawer.classList.contains('is-open')) setMenu(false);
+    if (window.innerWidth > 1180 && drawer.classList.contains('is-open')) setMenu(false);
   });
 
   /* ------------------------------------------------------ scroll reveal */
   var revealables = document.querySelectorAll('.reveal');
-
   if (reduceMotion || !('IntersectionObserver' in window)) {
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   } else {
@@ -60,8 +53,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
     revealables.forEach(function (el) { io.observe(el); });
   }
 
@@ -73,7 +65,6 @@
     item.querySelector('.faq__q').setAttribute('aria-expanded', 'false');
     item.querySelector('.faq__a').style.maxHeight = '';
   }
-
   function openItem(item) {
     var panel = item.querySelector('.faq__a');
     item.classList.add('is-open');
@@ -85,38 +76,32 @@
     var btn = e.target.closest('.faq__q');
     if (!btn) return;
     var item = btn.parentElement;
-    var isOpen = item.classList.contains('is-open');
-
+    var wasOpen = item.classList.contains('is-open');
     faqList.querySelectorAll('.faq__item.is-open').forEach(closeItem);
-    if (!isOpen) openItem(item);
+    if (!wasOpen) openItem(item);
   });
 
-  // The first item ships open — give it a real height, and keep it correct on resize.
-  var initiallyOpen = faqList.querySelector('.faq__item.is-open');
-  if (initiallyOpen) openItem(initiallyOpen);
+  var firstOpen = faqList.querySelector('.faq__item.is-open');
+  if (firstOpen) openItem(firstOpen);
 
   window.addEventListener('resize', function () {
     var open = faqList.querySelector('.faq__item.is-open');
-    if (open) open.querySelector('.faq__a').style.maxHeight =
-      open.querySelector('.faq__a').scrollHeight + 'px';
+    if (open) {
+      var panel = open.querySelector('.faq__a');
+      panel.style.maxHeight = panel.scrollHeight + 'px';
+    }
   });
 
   /* ---------------------------------------------------- testimonial slider */
   var track = document.getElementById('tstTrack');
   var slides = track ? track.children : [];
-  var dotsWrap = document.getElementById('tstDots');
   var index = 0;
   var timer = null;
 
   function goTo(i) {
     index = (i + slides.length) % slides.length;
     track.style.transform = 'translateX(' + (-index * 100) + '%)';
-    dotsWrap.querySelectorAll('.tst__dot').forEach(function (d, n) {
-      d.classList.toggle('is-active', n === index);
-      d.setAttribute('aria-selected', String(n === index));
-    });
   }
-
   function autoplay() {
     if (reduceMotion || slides.length < 2) return;
     clearInterval(timer);
@@ -124,20 +109,9 @@
   }
 
   if (slides.length) {
-    Array.prototype.forEach.call(slides, function (_, i) {
-      var dot = document.createElement('button');
-      dot.className = 'tst__dot';
-      dot.type = 'button';
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-label', 'Testimonial ' + (i + 1));
-      dot.addEventListener('click', function () { goTo(i); autoplay(); });
-      dotsWrap.appendChild(dot);
-    });
-
     document.getElementById('tstPrev').addEventListener('click', function () { goTo(index - 1); autoplay(); });
     document.getElementById('tstNext').addEventListener('click', function () { goTo(index + 1); autoplay(); });
 
-    // Swipe on touch devices.
     var startX = null;
     track.addEventListener('touchstart', function (e) { startX = e.touches[0].clientX; }, { passive: true });
     track.addEventListener('touchend', function (e) {
@@ -151,25 +125,28 @@
     autoplay();
   }
 
-  /* ------------------------------------------------------------ newsletter */
-  var form = document.getElementById('newsletterForm');
-  var msg = document.getElementById('nlMsg');
+  /* ------------------------------------------------------------- forms */
+  var EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var input = document.getElementById('nlEmail');
-    var value = input.value.trim();
+  function wireForm(formId, emailId, msgId, success) {
+    var form = document.getElementById(formId);
+    if (!form) return;
+    var msg = document.getElementById(msgId);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var input = document.getElementById(emailId);
+      if (!EMAIL.test(input.value.trim())) {
+        msg.textContent = 'Please enter a valid email address.';
+        input.focus();
+        return;
+      }
+      msg.textContent = success;
+      form.reset();
+    });
+  }
 
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value)) {
-      msg.textContent = 'Please enter a valid email address.';
-      input.focus();
-      return;
-    }
+  wireForm('guideForm', 'gEmail', 'guideMsg', 'Thank you — your guide is on its way.');
+  wireForm('nlForm', 'nlEmail', 'nlMsg', 'Thank you — you are on the list.');
 
-    msg.textContent = 'Thank you — you are on the list.';
-    form.reset();
-  });
-
-  /* ------------------------------------------------------------- misc */
   document.getElementById('year').textContent = new Date().getFullYear();
 })();

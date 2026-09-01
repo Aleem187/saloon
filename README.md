@@ -1,67 +1,88 @@
 # Hifsa Khan Salon — Homepage
 
-A static recreation of the [hifsakhansalon.com](https://hifsakhansalon.com/) homepage.
+A static rebuild of the [hifsakhansalon.com](https://hifsakhansalon.com/) homepage, matched
+section-by-section against a full-page screenshot of the original.
 
-## Brand colour
+## Colour
 
-Every place the reference site uses **green** uses **`#E576A1`** here instead. All accents
-derive from a single custom property, so the swap lives in one spot:
+The original green palette is used throughout. **No pink (`#E576A1`) appears anywhere.**
 
 ```css
 /* assets/css/styles.css */
---brand: #e576a1;   /* replaces the reference site's green */
---brand-dark: #c9578a;
---brand-deep: #a63f6d;
---brand-soft: #f7d9e5;
---brand-tint: #fdf3f7;
+--green:      #7d9b6d;   /* primary accent: buttons, links, icons */
+--green-dark: #638054;   /* hover */
+--green-deep: #47603b;   /* text on pale grounds */
+--green-pale: #e7eede;   /* newsletter ground */
+--green-mist: #f1f5eb;   /* hero ground */
 ```
 
-Neutrals, type and spacing are independent of that token.
+Section grounds: `--cream #f7f4ec`, `--beige #f2ede1`, `--sand #faf8f3`,
+`--blue-grey #dde5e8` (footer), `--lavender-soft #ece6f1` (testimonials).
 
-## Structure
+**These hexes are read off a compressed screenshot, not sampled from the source CSS.**
+They are close, not exact. Every one is a token, so correcting any of them is a one-line
+edit — send the real values (DevTools eyedropper, or the site's stylesheet) and they drop in.
 
-```
-index.html              markup for the whole page
-assets/css/styles.css   tokens, layout, components, responsive rules
-assets/js/main.js       sticky header, mobile drawer, scroll reveal,
-                        FAQ accordion, testimonial slider, newsletter validation
-assets/img/*.svg        placeholder artwork — see below
-```
+## Section order
 
-Sections in order: topbar, sticky header + nav, hero, scrolling marquee, house intro
-with stats, four service cards, Bridal Beauty Edit, signature treatments, four branches,
-testimonial slider, FAQ accordion, newsletter, footer, floating WhatsApp button.
+Matches the reference top to bottom:
 
-## Replacing the placeholder images
+1. Header — HK monogram, nav, green Book Appointment pill, search
+2. Hero — social proof, H1, copy, two buttons, 3-image collage, rotating seal
+3. Brand strip — Charlotte Tilbury, L'Oréal, NARS, Armani, Guinot, MAC
+4. Your Journey to Lasting Beauty — two-column intro + video card
+5. Four ways we care for you — Makeup / Hair / Spa / HK Aesthetics
+6. Bridal is where we made our name
+7. Why Lahore keeps coming back — four cards
+8. The Expert's Guide to Effortless Radiance — image + form
+9. Special Promotions — three creatives
+10. Create Memories at Hifsa Khan Sets
+11. FAQ accordion + See All FAQs
+12. Real Transformations Real Stories — testimonial slider
+13. Newsletter
+14. Instagram grid
+15. Footer — brand strip, Address / Contact / Info / More / Business Hours
+16. Let's Talk bar, copyright, floating WhatsApp, Offers edge tab
 
-This build was produced without network access to the reference site, so `assets/img/`
-holds generated SVG placeholders rather than the real photography. Drop the real files in
-and update the `src` in `index.html` (or reuse the filenames with a new extension):
+## Images — the one outstanding gap
 
-| Placeholder                   | Used by                          |
-| ----------------------------- | -------------------------------- |
-| `hero.svg`                    | hero background                  |
-| `about.svg`                   | "The House" intro                |
-| `service-makeup.svg`          | Makeup service card              |
-| `service-hair.svg`            | Hair service card                |
-| `service-spa.svg`             | Spa service card                 |
-| `service-aesthetics.svg`      | HK Aesthetics service card       |
-| `bridal-1.svg`, `bridal-2.svg`| Bridal Beauty Edit pair          |
+Network access is blocked in the build environment, so the original photography could not be
+downloaded. `assets/img/` holds neutral, clearly-marked slots at the correct aspect ratios.
+Replace each file (keep the name, or update the `src` in `index.html`):
+
+| File                                          | Slot                        | Ratio |
+| --------------------------------------------- | --------------------------- | ----- |
+| `hero-1 / hero-2 / hero-3`                    | hero collage                | 3:4   |
+| `avatar-1 / avatar-2 / avatar-3`              | social-proof avatars        | 1:1   |
+| `video-still`                                 | Bridal Beauty Edit card     | 16:7  |
+| `card-makeup / card-hair / card-spa / card-aesthetics` | service cards      | 4:3   |
+| `bridal`                                      | Bridal section              | 4:5   |
+| `guide`                                       | Expert's Guide              | 1:1   |
+| `promo-makeup / promo-hair / promo-spa`       | Special Promotions          | 1:1   |
+| `sets`                                        | Hifsa Khan Sets             | 4:3   |
+| `testimonial`                                 | testimonial panel           | 3:4   |
+| `insta-1` … `insta-6`                         | Instagram grid              | 1:1   |
+
+The six brand logos render as text set in the display face; swap in the real logo files for
+an exact match.
+
+## Typography
+
+Playfair Display (headings) + Jost (body), loaded from Google Fonts. Both are **inferred
+from the screenshot**, not confirmed against the source — the reference's actual faces may
+differ, and swapping them is a one-line change in `index.html` plus `--font-display` /
+`--font-body`.
 
 ## Running locally
-
-Open `index.html` directly, or serve the folder:
 
 ```
 npx http-server . -p 8080
 ```
 
-Fonts (Cormorant Garamond, Jost) load from Google Fonts and need a network connection;
-the page falls back to system serif/sans without one.
+Or open `index.html` directly; the page is fully static.
 
-## Responsive breakpoints
+## Responsive
 
-`1240px` (drops the secondary Call button) · `1100px` (2-up service and branch grids) ·
-`980px` (nav collapses to the drawer, side-by-side sections stack) · `720px` (single
-column throughout) · `560px` (short header CTA) · `420px` (compact brand and buttons).
-`prefers-reduced-motion` disables the marquee, reveals, autoplay and transitions.
+Breakpoints at `1180px` (nav → drawer), `980px` (split sections stack, 2-up cards),
+`720px` (single column), `560px` (compact masthead), `420px`.
+`prefers-reduced-motion` disables reveals, the seal rotation, autoplay and transitions.
